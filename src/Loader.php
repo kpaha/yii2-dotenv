@@ -65,7 +65,10 @@ class Loader extends Component
          * This program will not force the file to be loaded,
          * if the file does not exist then return.
          */
-        if (!file_exists(rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file)) {
+        if (file_exists(rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file . '.' . YII_ENV)) {
+            $file = $file . '.' . YII_ENV;
+        }
+	if (!file_exists(rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file)) {
             return false;
         }
 
